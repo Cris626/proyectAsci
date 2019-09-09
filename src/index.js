@@ -5,15 +5,9 @@ import App from './App';
 
 //https://firebase.google.com/docs/auth/web/microsoft-oauth
 
-/*firebase.initializeApp({
-    apiKey: "AIzaSyA3CTpYh5OCv5f8eXVRU4KIha8Y4ZfVB_w",
-    authDomain: "asci-1f5d7.firebaseapp.com",
-    databaseURL: "https://asci-1f5d7.firebaseio.com",
-    projectId: "asci-1f5d7",
-    storageBucket: "",
-    messagingSenderId: "651730027523",
-    appId: "1:651730027523:web:bccadba2e9915423"
-})*/
+// Browser Router
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(<BrowserRouter><App /></BrowserRouter> , document.getElementById('root'));
 
