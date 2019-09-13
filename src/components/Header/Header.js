@@ -1,64 +1,72 @@
 import React from 'react';
+import {Txt} from '../texts/text';
+import { Link } from "react-router-dom";
 
-function Header ({appName, user, onAuth, onLogout}){
-    function renderUserData(){
-        return (
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="nav nav-pills nav-justified">
+export class Header extends React.Component{
+    state = {
+        showTexto: false,
+        showShare: false,
+    }
+
+    toggleShow = () => {
+        this.setState({showTexto: !this.state.showTexto})
+    }    
+    toggleShowShare = () => {
+        this.setState({showShare: !this.state.showShare})
+    }    
+    render(){
+        const renderUserData=()=>{
+            return (
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="nav nav-pills nav-justified">
+                            <li class="btn btn-primary">
+                                {this.props.appName}
+                            </li>
+                            <li>
+                                <Link to="/user/my-Drive" class="btn btn-primary">Mi Unidad</Link>
+                            </li>
+                            <li>
+                                <Link to="/user/shared-with" class="btn btn-primary">Compartido</Link>
+                            </li>
+                            <li class="btn btn-primary">
+                                {this.props.user.displayName}
+                            </li>
+                            <li>
+                                <Link to="/home" onClick={this.props.onLogout} class="btn btn-primary">Logout</Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            )
+        }
+        const renderLoginButton=()=>{
+            return (
+                <div class="row">
+                    <div class="col-lg-12">
+                        <ul class="nav nav-pills nav-justified">
                         <li class="btn btn-primary">
-                            {appName}
+                            {this.props.appName}
                         </li>
                         <li>
-                            <button class="btn btn-primary">
-                                Mi texto
-                            </button>
+                            <Link to="/user" onClick={this.props.onAuth} class="btn btn-primary">Login</Link>
                         </li>
-                        <li class="btn btn-primary">
-                            Compartido conmigo
-                        </li>
-                        <li class="btn btn-primary">
-                            Compartido
-                        </li>
-                        <li class="btn btn-primary">
-                            {user.displayName}
-                        </li>
-                        <li>
-                            <button onClick={onLogout} class="btn btn-primary">
-                                Logout
-                            </button>
-                        </li>
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                
+            )
+        }        
+
+        return(
+            <main>
+                <nav class="navbar navbar-dark bg-primary">
+                <div>
+                    {this.props.user? renderUserData(): renderLoginButton()}                    
+                </div>
+            </nav>   
+                {this.state.showTexto? <Txt/>: ''}         
+            </main>
         )
     }
-    function renderLoginButton(){
-        return (
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="nav nav-pills nav-justified">
-                    <li class="btn btn-primary">
-                        {appName}
-                    </li>
-                    <li>
-                        <button onClick={onAuth} class="btn btn-primary">
-                            Login
-                        </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            
-        )
-    }
-    return (
-        <nav class="navbar navbar-dark bg-primary">
-            <div>
-                {user ? renderUserData(): renderLoginButton()}
-            </div>
-        </nav>
-    )
 }
-
-export default Header

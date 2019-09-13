@@ -1,15 +1,20 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { Session } from './components/login/login'
-import  Text  from './components/texts/text';
+import { Session } from './components/login/login';
+import { Txt } from './components/texts/text';
+import { Share } from './components/share/share';
+import {Upload}  from './components/fileUpload/fileUpload'; //SubirArchivo
+//import {Delete} from './components/delete';
 
 const Routes = (appName, user, onAuth, onLogout) =>{
     return (
         <Switch>
             <div class="container-fluid">
-                <Route exact path='/home' component={ Session }/>
-                <Route exact path='/user/Text' component={ Text }/>
-                <Route exact path='/user' component={ Session } />
+                <Route path='/home' component={ Session }/>
+                <Route path='/user' component={ Session } />
+                <Route path='/user/my-drive' component={ Txt } />
+                <Route path='/user/shared-with' component={ Share }/>
+                <Route path='/test' component={ Upload } />
             </div>
         </Switch>
     )

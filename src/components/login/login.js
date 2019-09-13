@@ -1,6 +1,8 @@
+import firebase from 'firebase';
 import React from 'react';
-import firebase from '../config/firebase';
-import Header from '../Header/Header';
+import { myFirestore } from '../config/firebase';
+import { Header } from '../Header/Header';
+
 
 export class Session extends React.Component{
     constructor(props){
@@ -13,7 +15,7 @@ export class Session extends React.Component{
     componentWillMount(){
         firebase.auth().onAuthStateChanged(user =>{
             if(this.state.user){
-                this.setState({ user })
+                this.setState({ user: user })
             }else{
                 this.setState({ user: null })
             }
@@ -24,8 +26,7 @@ export class Session extends React.Component{
         let provider = new firebase.auth.OAuthProvider('microsoft.com');
         firebase.auth().signInWithPopup(provider) // devuelve promesa
         .then(result => 
-            this.writeUserData(result.user.uid,result.user.displayName,result.user.email,result.user.photoURL),
-            this.props.history.push("/user")
+            this.writeData(result.user.uid,result.user.displayName,result.user.email,result.user.photoURL)
             )
         .catch(error => console.log(`Error ${error.code}: ${error.message}`));
     }
@@ -33,17 +34,20 @@ export class Session extends React.Component{
     logout(){
         firebase.auth().signOut()
         .then(result => 
-            this.props.history.push("/home")
+            //this.props.history.push("/home")
+            console.log('Cerro Sesion')
             )
         .catch(error => console.log(`Error: ${error.code}: ${error.message}`))
     }
-    
-    writeUserData(userId, name, email, imageUrl) {
-        firebase.database().ref('users/' + userId).set({
-          username: name,
-          email: email,
-          profile_picture : imageUrl
-        });
+
+    writeData(userId, name, email, imageUrl){
+        myFirestore.collection('users').doc(userId)
+        .set({
+            id: userId,
+            nameUser: name,
+            emailUser: email,
+            pictureUser: imageUrl
+        })
     }
 
     render(){
@@ -55,7 +59,6 @@ export class Session extends React.Component{
                 onAuth={this.login.bind(this)}
                 onLogout={this.logout.bind(this)}
             />
-            
         </div>
         )
     }

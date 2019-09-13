@@ -1,3 +1,4 @@
+/* ../components/texts/text */
 textarea{
     resize:none;
     border: 2px solid #333;
@@ -6,7 +7,11 @@ textarea{
     margin-top: 1%;
 }
 
-button#x{
-    margin-left: 2px;    
+#x{
+    margin-left: 5px;    
     float: right;
+}
+
+.list-group{
+    margin-top: 5%;
 }

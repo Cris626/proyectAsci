@@ -5,11 +5,15 @@ const firebaseConfig = {
     authDomain: "asci-1f5d7.firebaseapp.com",
     databaseURL: "https://asci-1f5d7.firebaseio.com",
     projectId: "asci-1f5d7",
-    storageBucket: "",
+    storageBucket: "gs://asci-1f5d7.appspot.com",
     messagingSenderId: "651730027523",
     appId: "1:651730027523:web:bccadba2e9915423"
   };
 
 firebase.initializeApp(firebaseConfig);
+//firebase.firestore().settings({timestampsInSnapshots: true})
+export const snapChots = firebase.firestore().settings({timestampsInSnapshots: true})
 
-export default firebase;
+export const myFirebase = firebase;
+export const myFirestore = firebase.firestore();
+export const myStorage = firebase.storage();
