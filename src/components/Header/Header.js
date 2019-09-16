@@ -1,11 +1,12 @@
 import React from 'react';
-import {Txt} from '../texts/text';
+import { Txt } from '../texts/text';
 import { Link } from "react-router-dom";
 
 export class Header extends React.Component{
     state = {
         showTexto: false,
         showShare: false,
+        app: this.props.appName
     }
 
     toggleShow = () => {
@@ -21,7 +22,7 @@ export class Header extends React.Component{
                     <div class="col-lg-12">
                         <ul class="nav nav-pills nav-justified">
                             <li class="btn btn-primary">
-                                {this.props.appName}
+                                {this.state.app}
                             </li>
                             <li>
                                 <Link to="/user/my-Drive" class="btn btn-primary">Mi Unidad</Link>
@@ -49,7 +50,9 @@ export class Header extends React.Component{
                             {this.props.appName}
                         </li>
                         <li>
-                            <Link to="/user" onClick={this.props.onAuth} class="btn btn-primary">Login</Link>
+                            <button onClick={this.props.onAuth} class="btn btn-primary">
+                                Login
+                            </button>
                         </li>
                         </ul>
                     </div>
@@ -65,7 +68,10 @@ export class Header extends React.Component{
                     {this.props.user? renderUserData(): renderLoginButton()}                    
                 </div>
             </nav>   
-                {this.state.showTexto? <Txt/>: ''}         
+                {this.state.showTexto? 
+                <Txt
+                    userID= {this.state.app}
+                />: ''}         
             </main>
         )
     }

@@ -1,10 +1,5 @@
 import React from 'react';
 import firebase from 'firebase';
-//import { snapShots } from 'firebase';
-
-//import { myStorage } from '../config/firebase';
-//import { file } from '@babel/types';
-//import  FileUploader  from 'react-firebase-file-uploader' ; 
 
 
 export class Upload extends React.Component{
@@ -60,13 +55,3 @@ export class Upload extends React.Component{
         )
     }
 }
-
-
-/*
-<pre>
-    <code>
-        {this.state.error ? <span className='error'>{this.state.error}</span> : ''}
-        {JSON.stringify(this.state.file, null, 2)}
-    </code>
-</pre>
-*/

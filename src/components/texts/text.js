@@ -1,10 +1,14 @@
 import React from 'react';
-//import { PassThrough } from 'stream';
+import {TextArea} from './note'
 
 export class Txt extends React.Component{
-    state={
-        showTexto: false,
-        showOnlyMe: false
+    constructor(){
+        super();
+        this.state={
+            showTexto: false,
+            showOnlyMe: false,
+        }
+
     }
 
     toggleShow = () => {
@@ -15,7 +19,7 @@ export class Txt extends React.Component{
         this.setState({showOnlyMe: !this.state.showOnlyMe})
         this.setState({showTexto: false})
     }
-
+    
     render(){ 
         function justMe(){
             return(
@@ -25,16 +29,7 @@ export class Txt extends React.Component{
                 </div>
             )
         }
-        function toggleTxt(){
-            return(
-                <div class="col-lg-8" >
-                    <h2>Nuevo archivo</h2>
-                    <textarea placeholder="Ingresar texto" rows="18" cols="132"/><br/>
-                    <button id="x" class="btn btn-primary">Guardar</button>
-                    <button id="x" class="btn btn-primary">Share</button>
-                </div>
-            )
-        }    
+        
         return(
             <div class="row">
                     <div class="col-lg-2">
@@ -44,7 +39,7 @@ export class Txt extends React.Component{
                         </div>
                     </div>
                     {this.state.showOnlyMe? justMe():''}
-                    {this.state.showTexto? toggleTxt():''}
+                    {this.state.showTexto? <TextArea />:''}
                     <div class="col-lg-2">
                     </div>
             </div>
