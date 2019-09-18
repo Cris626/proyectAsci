@@ -1,6 +1,6 @@
 import React from 'react';
-//import { storage } from 'firebase-admin';
 import { myFirestore } from '../config/firebase';
+import { Link } from "react-router-dom";
 
 export class OpenTextShare extends React.Component{
     constructor(){
@@ -30,8 +30,12 @@ export class OpenTextShare extends React.Component{
         .onSnapshot(snap=>{
             this.setState({
                 idTextUser: snap.data().idText,
-                userIdTxt: snap.data().idUser
+                userIdTxt: snap.data().idUser,
+                //idUser: snap.data().idUser
             })
+            console.log(this.state.userIdTxt)   
+            console.log(snap.data().idUser)
+            localStorage.setItem("shareId",this.state.userIdTxt)
         })
     }
 
@@ -55,8 +59,7 @@ export class OpenTextShare extends React.Component{
                     <div class="margin">
                         <p class="text-justify">{this.state.texto}</p>
                     </div>
-                    <button id="x"class="btn btn-primary">Guardar</button>
-                    <button id="x"class="btn btn-primary">Editar</button>
+                    <Link to="/user/edit-text-share" id="x"class="btn btn-primary">Editar</Link>
                 </div>
                 <div class="col-lg-2"></div>
             </div>

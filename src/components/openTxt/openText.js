@@ -1,6 +1,7 @@
 import React from 'react';
 //import { storage } from 'firebase-admin';
 import { myFirestore } from '../config/firebase';
+import { Link } from "react-router-dom";
 
 export class OpenText extends React.Component{
     constructor(){
@@ -38,8 +39,7 @@ export class OpenText extends React.Component{
                     <div class="margin">
                         <p class="text-justify">{this.state.texto}</p>
                     </div>
-                    <button id="x"class="btn btn-primary">Guardar</button>
-                    <button id="x"class="btn btn-primary">Editar</button>
+                    <Link to="/user/edit-text" id="x"class="btn btn-primary">Editar</Link>
                 </div>
                 <div class="col-lg-2"></div>
             </div>

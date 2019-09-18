@@ -6,7 +6,8 @@ import { Share } from './components/share/share';
 import { OpenText } from './components/openTxt/openText';
 import { ShareIt } from './components/shareIt/shareIt';
 import { OpenTextShare } from './components/openTxt/openTxtShare';
-import { Upload } from './components/fileUpload/fileUpload'
+import { EditText } from './components/texts/editText';
+import { EditTextShare } from './components/openTxt/editTextShare';
 
 const Routes = (appName, user, onAuth, onLogout) =>{
     return (
@@ -16,10 +17,11 @@ const Routes = (appName, user, onAuth, onLogout) =>{
                 <Route path='/user' component={ Session } />
                 <Route path='/user/my-drive' component={ Txt } />
                 <Route path='/user/text' component={ OpenText } />
+                <Route path='/user/edit-text' component={ EditText } />
                 <Route path='/user/text-share' component={ OpenTextShare } />
+                <Route path='/user/edit-text-share' component={ EditTextShare } />
                 <Route path='/user/shared-with' component={ Share }/>
                 <Route path='/user/share' component={ShareIt} />
-                <Route path='/user/test' component={ Upload } />
             </div>
         </Switch>
     )

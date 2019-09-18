@@ -29,7 +29,10 @@ export class MyTexts extends React.Component{
         })
     }
 
-    getUserId = (id, title) =>{localStorage.setItem("userId", id); localStorage.setItem("titleText", title)}
+    getUserId = (id, title) =>{
+        localStorage.setItem("userId", id); 
+        localStorage.setItem("titleText", title)
+    }
 
     render(){
         const { items } = this.state;
