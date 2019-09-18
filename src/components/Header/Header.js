@@ -6,7 +6,15 @@ export class Header extends React.Component{
     state = {
         showTexto: false,
         showShare: false,
-        app: this.props.appName
+        app: this.props.appName,
+        id: localStorage.getItem('id'),
+        email:localStorage.getItem('emailUser'),
+    }
+
+    clearStorage=()=>{
+        localStorage.clear()
+        localStorage.setItem("id", this.state.id)
+        localStorage.setItem("emailUser", this.state.email)
     }
 
     toggleShow = () => {
@@ -25,10 +33,10 @@ export class Header extends React.Component{
                                 {this.state.app}
                             </li>
                             <li>
-                                <Link to="/user/my-Drive" class="btn btn-primary">Mi Unidad</Link>
+                                <Link to="/user/my-Drive" class="btn btn-primary" onClick={this.clearStorage}>Mi Unidad</Link>
                             </li>
                             <li>
-                                <Link to="/user/shared-with" class="btn btn-primary">Compartido</Link>
+                                <Link to="/user/shared-with" class="btn btn-primary" onClick={this.clearStorage}>Compartido Solo Conmigo</Link>
                             </li>
                             <li class="btn btn-primary">
                                 {this.props.user.displayName}

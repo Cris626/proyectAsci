@@ -1,5 +1,6 @@
 import React from 'react';
 import { myFirestore } from '../config/firebase';
+import firebase from 'firebase';
 
 export class TextArea extends React.Component{
     constructor(){
@@ -7,64 +8,84 @@ export class TextArea extends React.Component{
         this.state={
             id:localStorage.getItem('id'),
             items: [],
-            nm: ''
+            txt: '',
+            titletxt: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getTexto = this.getTexto.bind(this);
-        this.setTexto = this.setTexto.bind(this);
+        this.handleFileUpload = this.handleFileUpload.bind(this)
     }
 
-    updateInput=e=>{
+    handleFileUpload() {    // upLoad
+        firebase.storage().ref()
+        .child(`test/${this.state.titletxt}.txt`)
+        .putString(this.state.txt)
+        .then(snap => {
+            this.setState({uploading: false})            
+          })
+          .catch(err => console.log(err.message))
+    }
+
+    updateInputTxt=e=>{
         this.setState({
-            nm: e.target.value
+            txt: e.target.value
+        })
+    }
+
+    updateInputTitleTxt=e=>{
+        this.setState({
+            titletxt: e.target.value
         })
     }
 
     componentDidMount(){
         this.getTexto()
-        this.setState()
     }
 
     getTexto = () =>{
         myFirestore.collection('users').doc(`${this.state.id}`).collection("textos").doc("2")
         .onSnapshot(snap=>{
             this.setState({
-                nm: snap.data().txtDocument
+                txt: snap.data().txtDocument                
             })
-            console.log(this.state.nm)
+            //console.log(this.state.txt)
         })
     }
-
-    /*setTexto = () =>{
-        myFirestore.collection('users').doc(`${this.state.id}`).collection("textos").where('state','==', '2')
-        .onSnapshot(querySnapshot =>{
-            console.log(`recive query snapshot of size ${querySnapshot.size}`)
-        })
-    }*/
 
     handleSubmit=e=>{
         e.preventDefault();
         myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc("2")
         .update({
-            txtDocument: this.state.nm
-        })
+            txtDocument: this.state.txt,
+            title: this.state.titletxt
+        });
+        console.log(this.state.txt)
+        this.handleFileUpload();
     }
+
+    
 
     render(){
         return(
             <div class="col-lg-8" >
-                <form onSubmit={this.setTexto}>
-                    <h2>Nuevo archivo</h2>
-                    <label>{this.state.nm}</label>
+                <form onSubmit={this.handleSubmit}>
+                    <h2>Nuevo archivo</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                    {/*<label>{this.state.nm}</label>*/}
+                    <label id="lbTitle">Titulo:</label>
+                    <input
+                        type="text" 
+                        id="txtTitle"
+                        onChange={this.updateInputTitleTxt}
+                        value={this.state.titletxt}
+                    />
                     <textarea 
                         name="fulltext" 
-                        onChange={this.setState} 
-                        value={this.state.nm} 
+                        onChange={this.updateInputTxt} 
+                        value={this.state.txt} 
                         placeholder="Ingresar texto" 
-                        rows="18" cols="132"
+                        rows="15" cols="120"
                     /><br/>
                     <button id="x" class="btn btn-primary">Guardar</button>
-                    <button type="submit" id="x" class="btn btn-primary">Share</button>
                 </form>
             </div>
         )

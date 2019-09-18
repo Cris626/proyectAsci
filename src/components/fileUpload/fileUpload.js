@@ -35,7 +35,7 @@ export class Upload extends React.Component{
             this.setState({uploading: false})            
           })
           .catch(err => console.log(err.message))
-        }
+    }
 
     render(){
         return (

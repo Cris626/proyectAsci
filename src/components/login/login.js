@@ -42,7 +42,8 @@ export class Session extends React.Component{
     }
 
     writeData(userId, name, email, imageUrl){
-        localStorage.setItem("id", userId)
+        localStorage.setItem("id", userId);
+        localStorage.setItem("emailUser", email);
         myFirestore.collection('users').doc(userId)
         .set({
             id: userId,
