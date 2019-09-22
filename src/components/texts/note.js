@@ -1,6 +1,8 @@
 import React from 'react';
 import { myFirestore } from '../config/firebase';
 import firebase from 'firebase';
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 
 export class TextArea extends React.Component{
     constructor(){
@@ -9,10 +11,10 @@ export class TextArea extends React.Component{
             id:localStorage.getItem('id'),
             items: [],
             txt: '',
+            contId:'',
             titletxt: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.getTexto = this.getTexto.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this)
     }
 
@@ -26,11 +28,6 @@ export class TextArea extends React.Component{
           .catch(err => console.log(err.message))
     }
 
-    updateInputTxt=e=>{
-        this.setState({
-            txt: e.target.value
-        })
-    }
 
     updateInputTitleTxt=e=>{
         this.setState({
@@ -39,10 +36,33 @@ export class TextArea extends React.Component{
     }
 
     componentDidMount(){
-        this.getTexto()
+        myFirestore.collection('users').doc(`${this.state.id}`).collection("textos").get()
+        .then(snapShots=>{
+            this.setState({
+                items: snapShots.docs.map(doc=>{
+                    this.setState({
+                        contId: doc.id
+                    })
+                    return {
+                        id: doc.id,
+                    }
+                })
+            })
+        },error=>{
+            console.log(error)
+        })
+        .then(()=>{
+            let cont = parseFloat(this.state.contId) + 1;
+            if(cont){
+                this.setState({contId: cont})
+            }else{
+                cont = 1;
+                this.setState({contId: cont})
+            }
+        })
     }
 
-    getTexto = () =>{
+    /*getTexto = () =>{
         myFirestore.collection('users').doc(`${this.state.id}`).collection("textos").doc("2")
         .onSnapshot(snap=>{
             this.setState({
@@ -50,20 +70,26 @@ export class TextArea extends React.Component{
             })
             //console.log(this.state.txt)
         })
-    }
+    }*/
 
     handleSubmit=e=>{
         e.preventDefault();
-        myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc("2")
-        .update({
+        myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc(`${this.state.contId}`)
+        .set({
             txtDocument: this.state.txt,
             title: this.state.titletxt
         });
-        console.log(this.state.txt)
+        //console.log(this.state.txt)
         this.handleFileUpload();
     }
 
-    
+    handleChange = value => {
+        this.setState({ 
+            txt: value
+        });
+    };
+
+    confirmAlert=()=>{alert(`Se guardo con exito`)}
 
     render(){
         return(
@@ -77,15 +103,21 @@ export class TextArea extends React.Component{
                         id="txtTitle"
                         onChange={this.updateInputTitleTxt}
                         value={this.state.titletxt}
+                        autoComplete="off"
                     />
-                    <textarea 
+                    <SimpleMDE
+                        onChange={this.handleChange}
+                        value={this.state.txt}
+                        placeholder="Ingresar texto" 
+                    />
+                    {/*<textarea 
                         name="fulltext" 
                         onChange={this.updateInputTxt} 
                         value={this.state.txt} 
                         placeholder="Ingresar texto" 
                         rows="15" cols="120"
-                    /><br/>
-                    <button id="x" class="btn btn-primary">Guardar</button>
+                    /><br/>*/}
+                    <button id="x" class="btn btn-primary" onClick={this.confirmAlert}>Guardar</button>
                 </form>
             </div>
         )

@@ -1,6 +1,8 @@
 import React from 'react';
 import { myFirestore } from '../config/firebase';
 import firebase from 'firebase';
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 
 export class EditTextShare extends React.Component{
     constructor(){
@@ -10,11 +12,33 @@ export class EditTextShare extends React.Component{
             idUser: localStorage.getItem('shareId'),
             idText: localStorage.getItem('txtIdUser'),
             txt: '',
+            txtArea: '',    ////
             titletxt: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getTexto = this.getTexto.bind(this);
-        this.handleFileUpload = this.handleFileUpload.bind(this)
+        this.handleFileUpload = this.handleFileUpload.bind(this);
+        this.updateText = this.updateText.bind(this);
+    }
+
+    updateText=()=>{
+        myFirestore.collection("users").doc(`${this.state.idUser}`).collection("textos").doc(`${this.state.idText}`)
+            .update({
+            txtDocument: this.state.txt,
+        });
+    }
+
+    componentDidUpdate(txtArea){
+        setTimeout(() => {
+            this.updateText()
+        }, 1000);
+        /*if(this.txt !== txtArea){
+            myFirestore.collection("users").doc(`${this.state.idUser}`).collection("textos").doc(`${this.state.idText}`)
+            .update({
+            txtDocument: this.state.txt,
+//            title: this.state.titletxt
+            });
+        }*/
     }
 
     handleFileUpload() {    // upLoad
@@ -27,11 +51,12 @@ export class EditTextShare extends React.Component{
           .catch(err => console.log(err.message))
     }
 
-    updateInputTxt=e=>{
+    //////
+    /*updateInputTxt=e=>{
         this.setState({
             txt: e.target.value
         })
-    }
+    }*/
 
     componentDidMount(){
         this.getTexto()
@@ -55,29 +80,52 @@ export class EditTextShare extends React.Component{
             txtDocument: this.state.txt,
 //            title: this.state.titletxt
         });
-        console.log(this.state.txt)
+        //console.log(this.state.txt)
         this.handleFileUpload();
     }
+
+    handleChange = value => {
+        this.setState({ 
+            txt: value
+        });
+    };
 
     alert=()=>{alert("Se guardo con exito")}
 
     render(){
         return(
-            <div class="col-lg-8" >
-                <form onSubmit={this.handleSubmit}>
-                    <h2>Editar archivo</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
-                    <label id="lbTitle">Titulo:</label>                    
-                    {<label id="lbTitle">{this.state.titletxt}</label>}
-                    <textarea 
-                        name="fulltext" 
-                        onChange={this.updateInputTxt} 
-                        value={this.state.txt} 
-                        placeholder="Ingresar texto" 
-                        rows="15" cols="120"
-                    /><br/>
-                    <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Guardar</button>
-                </form>
+            <div class="row">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-8" >
+                    <form onSubmit={this.handleSubmit}>
+                        <h2>Editar archivo</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                        <label id="lbTitle">Titulo:</label>                    
+                        {<label id="lbTitle">{this.state.titletxt}</label>}
+                        <SimpleMDE 
+                            onChange={this.handleChange}
+                            value={this.state.txt}                             
+                            placeholder="Ingresar texto" 
+                            options={{
+                                autofocus: false,
+                                spellChecker: false,
+                                lineWrapping: false
+                              }}
+                        />
+                        {/*<textarea 
+                            name="fulltext" 
+                            onChange={this.updateInputTxt} 
+                            value={this.state.txt} 
+                            placeholder="Ingresar texto" 
+                            rows="15" cols="120"
+                        /><br/>*/}
+                        <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Guardar</button>
+                    </form>
+                </div>
+                <div class="col-lg-2"></div>
             </div>
+
+
+            
         )
     }
 }

@@ -1,6 +1,12 @@
 h2{
     margin-top: 10px
 }
+
+body{
+    background-color: #89C8F6;
+}
+
+
  /* labelTitulo de "Nuevo archivo"     */
  label#lbTitle{
      font-size: 1.5em;
@@ -10,6 +16,7 @@ h2{
      font-size: 1.5em;
      border-style: none;
      border-bottom-style: solid;
+     background-color: transparent;
  }
 
 /* ../components/texts/text */

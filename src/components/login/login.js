@@ -26,7 +26,7 @@ export class Session extends React.Component{
     login(){
         let provider = new firebase.auth.OAuthProvider('microsoft.com');
         firebase.auth().signInWithPopup(provider) // devuelve promesa
-        .then(result => this.writeData(result.user.uid,result.user.displayName,result.user.email,result.user.photoURL))        
+        .then(result => this.writeData(result.user.uid, result.user.displayName, result.user.email, result.user.photoURL))        
         .then(this.props.history.push("/user"))
         .catch(error => console.log(`Error ${error.code}: ${error.message}`));
     }
@@ -44,6 +44,7 @@ export class Session extends React.Component{
     writeData(userId, name, email, imageUrl){
         localStorage.setItem("id", userId);
         localStorage.setItem("emailUser", email);
+        console.log(imageUrl);
         myFirestore.collection('users').doc(userId)
         .set({
             id: userId,

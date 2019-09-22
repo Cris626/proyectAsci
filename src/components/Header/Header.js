@@ -38,8 +38,9 @@ export class Header extends React.Component{
                             <li>
                                 <Link to="/user/shared-with" class="btn btn-primary" onClick={this.clearStorage}>Compartido Solo Conmigo</Link>
                             </li>
-                            <li class="btn btn-primary">
-                                {this.props.user.displayName}
+                            <li>
+                                <Link to="/user/profile" class="btn btn-primary">{this.props.user.displayName}</Link>
+                                
                             </li>
                             <li>
                                 <Link to="/home" onClick={this.props.onLogout} class="btn btn-primary">Logout</Link>

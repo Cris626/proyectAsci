@@ -12,5 +12,7 @@ class App extends React.Component{
 }
 
 
+//npm install --save react-simplemde-editor
+
 
 export default App;

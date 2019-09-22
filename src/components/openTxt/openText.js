@@ -1,5 +1,4 @@
 import React from 'react';
-//import { storage } from 'firebase-admin';
 import { myFirestore } from '../config/firebase';
 import { Link } from "react-router-dom";
 
@@ -16,7 +15,7 @@ export class OpenText extends React.Component{
     }
 
     componentDidMount(){
-        console.log(localStorage.getItem('userId'));
+        //console.log(localStorage.getItem('userId'));
         this.getTexto()
     }
 

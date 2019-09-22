@@ -1,0 +1,18 @@
+#imagenPerfil{
+    border-radius: 250px;
+    width: 250px;
+}
+
+.text-center{
+    background-color: #49ABF4; 
+    padding-bottom: 50px;
+    border-radius: 15px;
+    margin-top: 5%;
+}
+
+label{
+    font-size: 25px;
+    font-family: monospace;
+    font-style: italic;
+    color: #ffffff;
+}

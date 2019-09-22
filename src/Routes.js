@@ -8,13 +8,15 @@ import { ShareIt } from './components/shareIt/shareIt';
 import { OpenTextShare } from './components/openTxt/openTxtShare';
 import { EditText } from './components/texts/editText';
 import { EditTextShare } from './components/openTxt/editTextShare';
+import { Profile } from './components/profile/showProfile';
 
-const Routes = (appName, user, onAuth, onLogout) =>{
+const Routes = () =>{
     return (
         <Switch>
             <div class="container-fluid">
                 <Route path='/home' component={ Session }/>
                 <Route path='/user' component={ Session } />
+                <Route path='/user/profile' component={ Profile } />
                 <Route path='/user/my-drive' component={ Txt } />
                 <Route path='/user/text' component={ OpenText } />
                 <Route path='/user/edit-text' component={ EditText } />
