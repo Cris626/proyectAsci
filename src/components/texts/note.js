@@ -62,16 +62,6 @@ export class TextArea extends React.Component{
         })
     }
 
-    /*getTexto = () =>{
-        myFirestore.collection('users').doc(`${this.state.id}`).collection("textos").doc("2")
-        .onSnapshot(snap=>{
-            this.setState({
-                txt: snap.data().txtDocument                
-            })
-            //console.log(this.state.txt)
-        })
-    }*/
-
     handleSubmit=e=>{
         e.preventDefault();
         myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc(`${this.state.contId}`)
@@ -79,7 +69,6 @@ export class TextArea extends React.Component{
             txtDocument: this.state.txt,
             title: this.state.titletxt
         });
-        //console.log(this.state.txt)
         this.handleFileUpload();
     }
 
@@ -96,7 +85,6 @@ export class TextArea extends React.Component{
             <div class="col-lg-8" >
                 <form onSubmit={this.handleSubmit}>
                     <h2>Nuevo archivo</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
-                    {/*<label>{this.state.nm}</label>*/}
                     <label id="lbTitle">Titulo:</label>
                     <input
                         type="text" 
@@ -109,14 +97,7 @@ export class TextArea extends React.Component{
                         onChange={this.handleChange}
                         value={this.state.txt}
                         placeholder="Ingresar texto" 
-                    />
-                    {/*<textarea 
-                        name="fulltext" 
-                        onChange={this.updateInputTxt} 
-                        value={this.state.txt} 
-                        placeholder="Ingresar texto" 
-                        rows="15" cols="120"
-                    /><br/>*/}
+                    /><br/>
                     <button id="x" class="btn btn-primary" onClick={this.confirmAlert}>Guardar</button>
                 </form>
             </div>

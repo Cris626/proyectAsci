@@ -1,7 +1,6 @@
 import React from 'react';
 import { myFirestore } from '../config/firebase';
 import { Link } from "react-router-dom";
-//import { OpenText } from '../openTxt/openText';
 
 export class MyTexts extends React.Component{
     constructor(){
@@ -11,13 +10,11 @@ export class MyTexts extends React.Component{
             items: [],
         }
     }
-    //onChange={localStorage.setItem("textoId",item.data.txtDocument)}
     componentDidMount(){
         myFirestore.collection('users').doc(`${this.state.id}`).collection("textos").get()
         .then(snapShots=>{
             this.setState({
                 items: snapShots.docs.map(doc=>{
-                    //console.log(doc.id)
                     return {
                         id: doc.id,
                         data: doc.data()

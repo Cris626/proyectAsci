@@ -16,12 +16,10 @@ export class ShareIt extends React.Component{
     }
 
     componentDidMount(){
-        //console.log(this.state.idText)
         myFirestore.collection('users').get()
         .then(snapShots=>{            
             this.setState({
                 items: snapShots.docs.map(doc=>{
-                    //console.log(doc.id)
                     return {
                         idUsers: doc.id,
                         data: doc.data(),
@@ -29,7 +27,6 @@ export class ShareIt extends React.Component{
                     }
                 })
             })
-            //console.log(this.state.idUsers)
         },error=>{
             console.log(error)
         })

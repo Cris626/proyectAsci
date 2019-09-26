@@ -33,8 +33,8 @@ export class OpenTextShare extends React.Component{
                 userIdTxt: snap.data().idUser,
                 //idUser: snap.data().idUser
             })
-            console.log(this.state.userIdTxt)   
-            console.log(snap.data().idUser)
+            /*console.log(this.state.userIdTxt)   
+            console.log(snap.data().idUser)*/
             localStorage.setItem("shareId",this.state.userIdTxt)
         })
     }
