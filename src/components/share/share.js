@@ -16,7 +16,7 @@ export class Share extends React.Component{
             <div class="row">
                     <div class="col-lg-2">
                         <div class="list-group" id="list-tab" role="tablist">                            
-                            <button onClick={this.toggleShowListAll} class="list-group-item list-group-item-action">Solo conmigo</button>
+                            <button onClick={this.toggleShowListAll} class="list-group-item list-group-item-action">Only With Me</button>
                         </div>
                     </div>
                     {this.state.showListAll? <AllTexts/>: ''}

@@ -84,8 +84,8 @@ export class TextArea extends React.Component{
         return(
             <div class="col-lg-8" >
                 <form onSubmit={this.handleSubmit}>
-                    <h2>Nuevo archivo</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
-                    <label id="lbTitle">Titulo:</label>
+                    <h2>New File</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                    <label id="lbTitle">Title:</label>
                     <input
                         type="text" 
                         id="txtTitle"
@@ -98,7 +98,7 @@ export class TextArea extends React.Component{
                         value={this.state.txt}
                         placeholder="Ingresar texto" 
                     /><br/>
-                    <button id="x" class="btn btn-primary" onClick={this.confirmAlert}>Guardar</button>
+                    <button id="x" class="btn btn-primary" onClick={this.confirmAlert}>Save</button>
                 </form>
             </div>
         )

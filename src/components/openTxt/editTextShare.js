@@ -21,7 +21,7 @@ export class EditTextShare extends React.Component{
         this.updateText = this.updateText.bind(this);
     }
 
-    updateText=()=>{
+    updateText=()=>{//Cambiar textos por texts
         myFirestore.collection("users").doc(`${this.state.idUser}`).collection("textos").doc(`${this.state.idText}`)
             .update({
             txtDocument: this.state.txt,
@@ -83,15 +83,15 @@ export class EditTextShare extends React.Component{
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8" >
                     <form onSubmit={this.handleSubmit}>
-                        <h2>Editar archivo</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
-                        <label id="lbTitle">Titulo:</label> 
+                        <h2>Edit File</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                        <label id="lbTitle">Title:</label> 
                         <label>{this.state.titletxt}</label>                                      
                         <SimpleMDE 
                             onChange={this.handleChange}
                             value={this.state.txt}                             
                             placeholder="Ingresar texto" 
                         />
-                        <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Guardar</button>
+                        <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</button>
                     </form>
                 </div>
                 <div class="col-lg-2"></div>

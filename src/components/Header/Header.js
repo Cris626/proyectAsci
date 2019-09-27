@@ -4,11 +4,9 @@ import { Link } from "react-router-dom";
 
 export class Header extends React.Component{
     state = {
-        showTexto: false,
-        showShare: false,
         app: this.props.appName,
         id: localStorage.getItem('id'),
-        email:localStorage.getItem('emailUser'),
+        email: localStorage.getItem('emailUser'),
     }
 
     clearStorage=()=>{
@@ -16,13 +14,7 @@ export class Header extends React.Component{
         localStorage.setItem("id", this.state.id)
         localStorage.setItem("emailUser", this.state.email)
     }
-
-    toggleShow = () => {
-        this.setState({showTexto: !this.state.showTexto})
-    }    
-    toggleShowShare = () => {
-        this.setState({showShare: !this.state.showShare})
-    }    
+    
     render(){
         const renderUserData=()=>{
             return (
@@ -33,10 +25,10 @@ export class Header extends React.Component{
                                 {this.state.app}
                             </li>
                             <li>
-                                <Link to="/user/my-Drive" class="btn btn-primary" onClick={this.clearStorage}>Mi Unidad</Link>
+                                <Link to="/user/my-Drive" class="btn btn-primary" onClick={this.clearStorage}>My Drive</Link>
                             </li>
                             <li>
-                                <Link to="/user/shared-with" class="btn btn-primary" onClick={this.clearStorage}>Compartido Solo Conmigo</Link>
+                                <Link to="/user/shared-with" class="btn btn-primary" onClick={this.clearStorage}>Shared With Me</Link>
                             </li>
                             <li>
                                 <Link to="/user/profile" class="btn btn-primary">{this.props.user.displayName}</Link>

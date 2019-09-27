@@ -15,7 +15,6 @@ export class OpenText extends React.Component{
     }
 
     componentDidMount(){
-        //console.log(localStorage.getItem('userId'));
         this.getTexto()
     }
 
@@ -38,7 +37,7 @@ export class OpenText extends React.Component{
                     <div class="margin">
                         <p class="text-justify">{this.state.texto}</p>
                     </div>
-                    <Link to="/user/edit-text" id="x"class="btn btn-primary">Editar</Link>
+                    <Link to="/user/edit-text" id="x"class="btn btn-primary">Edit</Link>
                 </div>
                 <div class="col-lg-2"></div>
             </div>

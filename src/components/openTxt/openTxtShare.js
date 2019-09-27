@@ -24,17 +24,12 @@ export class OpenTextShare extends React.Component{
 
     
     getDate=()=>{
-        /*console.log(this.state.userIdTxt)
-        console.log(this.state.idTextUser)*/
         myFirestore.collection('users').doc(`${this.state.id}`).collection('shareWithMe').doc(`${this.state.idTextUser}`)
         .onSnapshot(snap=>{
             this.setState({
                 idTextUser: snap.data().idText,
                 userIdTxt: snap.data().idUser,
-                //idUser: snap.data().idUser
             })
-            /*console.log(this.state.userIdTxt)   
-            console.log(snap.data().idUser)*/
             localStorage.setItem("shareId",this.state.userIdTxt)
         })
     }
@@ -59,7 +54,7 @@ export class OpenTextShare extends React.Component{
                     <div class="margin">
                         <p class="text-justify">{this.state.texto}</p>
                     </div>
-                    <Link to="/user/edit-text-share" id="x"class="btn btn-primary">Editar</Link>
+                    <Link to="/user/edit-text-share" id="x"class="btn btn-primary">Edit</Link>
                 </div>
                 <div class="col-lg-2"></div>
             </div>

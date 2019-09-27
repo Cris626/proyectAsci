@@ -51,13 +51,13 @@ export class ShareIt extends React.Component{
                 <div class="col-lg-2">
                 </div>
                     <div class="col-lg-8">
-                        <h2>Compartir con</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                        <h2>Share With</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
                         <table class="table">
                             <thead>
                                 <tr>
                                 <th scope="col">Email</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Compartir</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Share</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -65,7 +65,7 @@ export class ShareIt extends React.Component{
                                     <tr key={key}>
                                         <td>{item.data.emailUser}</td>
                                         <td>{item.data.nameUser/*item.data.txtDocument*/}</td>
-                                        <td><Link to="/user/share" type="button" class="btn btn-primary" onClick={()=>this.setUserShare(item.data.id, item.data.emailUser)}>Compartir</Link></td>
+                                        <td><Link to="/user/share" type="button" class="btn btn-primary" onClick={()=>this.setUserShare(item.data.id, item.data.emailUser)}>Share</Link></td>
                                     </tr>
                                 )): null}
                             </tbody>

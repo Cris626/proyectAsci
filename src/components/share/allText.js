@@ -42,9 +42,9 @@ export class AllTexts extends React.Component{
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Texto</th>
-                    <th scope="col">Abrir</th>
-                    <th scope="col">Emisor</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Open</th>
+                    <th scope="col">User</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -52,7 +52,7 @@ export class AllTexts extends React.Component{
                         <tr key={key}>
                             <td>{item.id}</td>
                             <td>{item.data.title/*item.data.txtDocument*/}</td>
-                            <td><Link to="/user/text-share" type="button" class="btn btn-primary" onClick={()=> this.getDate(item.id, item.data.title, item.data.idUser)}>Abrir</Link></td>
+                            <td><Link to="/user/text-share" type="button" class="btn btn-primary" onClick={()=> this.getDate(item.id, item.data.title, item.data.idUser)}>Open</Link></td>
                             <td>{item.data.emailUser}</td>
                         </tr>
                     )): null}

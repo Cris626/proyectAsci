@@ -11,7 +11,6 @@ export class EditText extends React.Component{
             id:localStorage.getItem('id'),
             idText: localStorage.getItem('userId'),
             txt: '',
-            txtTest: '',
             titletxt: '',
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +21,7 @@ export class EditText extends React.Component{
     
     
     
-    handleFileUpload() {    // upLoad
+    handleFileUpload() {    // upLoad storage
         firebase.storage().ref()
         .child(`test/${this.state.titletxt}.txt`)
         .putString(this.state.txt)
@@ -63,7 +62,6 @@ export class EditText extends React.Component{
 
     handleSubmit=e=>{
         e.preventDefault();
-        
         myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc(`${this.state.idText}`)
         .update({
             txtDocument: this.state.txt,
@@ -72,36 +70,30 @@ export class EditText extends React.Component{
     }
 
     handleChange = value => {
-        this.setState({
-            txtTest: this.state.txt
-        })
         this.setState({ 
             txt: value
         });
-        
     };
 
 
     alert=()=>{alert("Se guardo con exito")}
 
     render(){
-        
-        
         return(
             <div class="row">
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8" >
                     <form onSubmit={this.handleSubmit} name="formulario">
-                        <h2>Editar archivo</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
-                        <label id="lbTitle">Titulo:</label>                    
+                        <h2>Edit File</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                        <label id="lbTitle">Title:</label>  
+                        <label>{this.state.titletxt}</label>                    
                         <SimpleMDE 
                             id="campoTexto"
                             onChange={this.handleChange}
-                            label={this.state.titletxt}
                             value={this.state.txt}                             
                             placeholder="Ingresar texto" 
                         />
-                        <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Guardar</button>
+                        <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</button>
                     </form>
                 </div>
                 <div class="col-lg-2"></div>

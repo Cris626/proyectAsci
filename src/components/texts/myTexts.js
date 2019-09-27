@@ -35,14 +35,14 @@ export class MyTexts extends React.Component{
         const { items } = this.state;
         return(
             <div class="col-lg-8">
-                <h2>Mis Textos</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                <h2>My Texts</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
                 <table class="table">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Texto</th>
-                        <th scope="col">Abrir</th>
-                        <th scope="col">Compartir</th>
+                        <th scope="col">Text</th>
+                        <th scope="col">Open</th>
+                        <th scope="col">Share</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,8 +50,8 @@ export class MyTexts extends React.Component{
                             <tr key={key}>
                                 <td>{item.id}</td>
                                 <td>{item.data.title/*item.data.txtDocument*/}</td>
-                                <td><Link to="/user/text" type="button" class="btn btn-primary" onClick={()=> this.getUserId(item.id)}>Abrir</Link></td>
-                                <td><Link to="/user/share" type="button" class="btn btn-primary" onClick={()=> this.getUserId(item.id, item.data.title)}>Compartir</Link></td>
+                                <td><Link to="/user/text" type="button" class="btn btn-primary" onClick={()=> this.getUserId(item.id)}>Open</Link></td>
+                                <td><Link to="/user/share" type="button" class="btn btn-primary" onClick={()=> this.getUserId(item.id, item.data.title)}>Share</Link></td>
                             </tr>
                         )): null}
                     </tbody>

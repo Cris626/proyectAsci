@@ -26,8 +26,8 @@ export class Txt extends React.Component{
             <div class="row">
                     <div class="col-lg-2">
                         <div class="list-group" id="list-tab" role="tablist">                            
-                            <button onClick={this.toggleMe} class="list-group-item list-group-item-action">Ver</button>
-                            <button onClick={this.toggleShow} class="list-group-item list-group-item-action">Nuevo</button>
+                            <button onClick={this.toggleMe} class="list-group-item list-group-item-action">Watch</button>
+                            <button onClick={this.toggleShow} class="list-group-item list-group-item-action">New</button>
                         </div>
                     </div>
                     {this.state.showOnlyMe? <MyTexts />:''}
