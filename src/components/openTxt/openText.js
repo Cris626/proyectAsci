@@ -1,6 +1,8 @@
 import React from 'react';
 import { myFirestore } from '../config/firebase';
 import { Link } from "react-router-dom";
+//import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 
 export class OpenText extends React.Component{
     constructor(){
@@ -27,7 +29,7 @@ export class OpenText extends React.Component{
             })
         })
     }
-
+ 
     render(){
         return(
             <div class="row">
@@ -37,6 +39,13 @@ export class OpenText extends React.Component{
                     <div class="margin">
                         <p class="text-justify">{this.state.texto}</p>
                     </div>
+                    {/*<SimpleMDE
+                        value={this.state.texto}
+                        options={{
+                            toolbar: false,
+                            enabled: false,
+                        }}
+                    />*/}
                     <Link to="/user/edit-text" id="x"class="btn btn-primary">Edit</Link>
                 </div>
                 <div class="col-lg-2"></div>

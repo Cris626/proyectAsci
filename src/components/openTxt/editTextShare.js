@@ -3,6 +3,7 @@ import { myFirestore } from '../config/firebase';
 import firebase from 'firebase';
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
+import { Link } from "react-router-dom";
 
 export class EditTextShare extends React.Component{
     constructor(){
@@ -91,7 +92,8 @@ export class EditTextShare extends React.Component{
                             value={this.state.txt}                             
                             placeholder="Ingresar texto" 
                         />
-                        <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</button>
+                        <Link to="/user/shared-with" id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</Link>
+                        <button >Save</button>
                     </form>
                 </div>
                 <div class="col-lg-2"></div>

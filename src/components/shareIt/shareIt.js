@@ -65,7 +65,7 @@ export class ShareIt extends React.Component{
                                     <tr key={key}>
                                         <td>{item.data.emailUser}</td>
                                         <td>{item.data.nameUser/*item.data.txtDocument*/}</td>
-                                        <td><Link to="/user/share" type="button" class="btn btn-primary" onClick={()=>this.setUserShare(item.data.id, item.data.emailUser)}>Share</Link></td>
+                                        <td><Link to="/user/my-drive" type="button" class="btn btn-primary" onClick={()=>this.setUserShare(item.data.id, item.data.emailUser)}>Share</Link></td>
                                     </tr>
                                 )): null}
                             </tbody>

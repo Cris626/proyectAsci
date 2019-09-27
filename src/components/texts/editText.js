@@ -3,6 +3,7 @@ import { myFirestore } from '../config/firebase';
 import firebase from 'firebase';
 import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
+import { Link } from "react-router-dom";
 
 export class EditText extends React.Component{
     constructor(){
@@ -84,7 +85,7 @@ export class EditText extends React.Component{
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8" >
                     <form onSubmit={this.handleSubmit} name="formulario">
-                        <h2>Edit File</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
+                        <h2>Edit Text</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
                         <label id="lbTitle">Title:</label>  
                         <label>{this.state.titletxt}</label>                    
                         <SimpleMDE 
@@ -93,7 +94,7 @@ export class EditText extends React.Component{
                             value={this.state.txt}                             
                             placeholder="Ingresar texto" 
                         />
-                        <button id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</button>
+                        <Link to="/user/my-drive" id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</Link>
                     </form>
                 </div>
                 <div class="col-lg-2"></div>

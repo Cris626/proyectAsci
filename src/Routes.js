@@ -14,7 +14,7 @@ const Routes = () =>{
     return (
         <Switch>
             <div class="container-fluid">
-                <Route path='/home' component={ Session }/>
+                <Route exact path='/' component={ Session }/>
                 <Route path='/user' component={ Session } />
                 <Route path='/user/profile' component={ Profile } />
                 <Route path='/user/my-drive' component={ Txt } />

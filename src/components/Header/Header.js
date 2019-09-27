@@ -35,45 +35,17 @@ export class Header extends React.Component{
                                 
                             </li>
                             <li>
-                                <Link to="/home" onClick={this.props.onLogout} class="btn btn-primary">Logout</Link>
+                                <Link to="/" onClick={this.props.onLogout} class="btn btn-primary">Logout</Link>
                             </li>
                         </ul>
                     </div>
                 </div>
             )
         }
-        const renderLoginButton=()=>{
-            return (
-                <div class="row">
-                    <div class="col-lg-12">
-                        <ul class="nav nav-pills nav-justified">
-                        <li class="btn btn-primary">
-                            {this.props.appName}
-                        </li>
-                        <li>
-                            <button onClick={this.props.onAuth} class="btn btn-primary">
-                                Login
-                            </button>
-                        </li>
-                        </ul>
-                    </div>
-                </div>
-                
-            )
-        }        
-
         return(
-            <main>
-                <nav class="navbar navbar-dark bg-primary">
-                <div>
-                    {this.props.user? renderUserData(): renderLoginButton()}                    
-                </div>
-            </nav>   
-                {this.state.showTexto? 
-                <Txt
-                    userID= {this.state.app}
-                />: ''}         
-            </main>
+            <div>
+                {renderUserData()}                    
+            </div>
         )
     }
 }
