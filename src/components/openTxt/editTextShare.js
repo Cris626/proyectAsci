@@ -63,10 +63,10 @@ export class EditTextShare extends React.Component{
 
     handleSubmit=e=>{
         e.preventDefault();
-        myFirestore.collection("users").doc(`${this.state.idUser}`).collection("textos").doc(`${this.state.idText}`)
+        /*myFirestore.collection("users").doc(`${this.state.idUser}`).collection("textos").doc(`${this.state.idText}`)
         .update({
             txtDocument: this.state.txt,
-        });
+        });*/
         this.handleFileUpload();
     }
 
@@ -93,7 +93,7 @@ export class EditTextShare extends React.Component{
                             value={this.state.txt}                             
                             placeholder="Ingresar texto" 
                         />
-                        <Link to="/user/shared-with" id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</Link>
+                        <Link to="/user/my-Drive" id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</Link>
                     </form>
                 </div>
                 <div class="col-lg-2"></div>

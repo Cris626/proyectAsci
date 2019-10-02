@@ -15,19 +15,31 @@ export class Txt extends React.Component{
     }
 
     toggleShow = () => {
-        this.setState({showTexto: !this.state.showTexto})
-        this.setState({showOnlyMe: false})
-        this.setState({showShare: false})
+        if(this.state.showTexto){
+            console.log("None...")
+        }else{
+            this.setState({showTexto: !this.state.showTexto})
+            this.setState({showOnlyMe: false})
+            this.setState({showShare: false})
+        }
     }   
     toggleMe = () =>{
-        this.setState({showOnlyMe: !this.state.showOnlyMe})
-        this.setState({showTexto: false})
-        this.setState({showShare: false})
+        if(this.state.showOnlyMe){
+            console.log("None...")
+        }else{
+            this.setState({showOnlyMe: !this.state.showOnlyMe})
+            this.setState({showTexto: false})
+            this.setState({showShare: false})
+        }
     }
     toggleShare=()=>{
-        this.setState({showShare: !this.state.showShare})
-        this.setState({showTexto: false})
-        this.setState({showOnlyMe: false})
+        if(this.state.showShare){
+            console.log("None...")
+        }else{
+            this.setState({showShare: !this.state.showShare})
+            this.setState({showTexto: false})
+            this.setState({showOnlyMe: false})
+        }
     }
     
     render(){

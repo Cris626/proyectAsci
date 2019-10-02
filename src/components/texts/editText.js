@@ -65,10 +65,10 @@ export class EditText extends React.Component{
 
     handleSubmit=e=>{
         e.preventDefault();
-        myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc(`${this.state.idText}`)
+        /*myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc(`${this.state.idText}`)
         .update({
             txtDocument: this.state.txt,
-        });
+        });*/
         this.handleFileUpload();
     }
 
