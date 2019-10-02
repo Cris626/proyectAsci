@@ -19,20 +19,20 @@ export class EditTextShare extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getTexto = this.getTexto.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
-        this.updateText = this.updateText.bind(this);
+        //this.updateText = this.updateText.bind(this);
     }
 
-    updateText=()=>{//Cambiar textos por texts
+    /*updateText=()=>{//Cambiar textos por texts
         myFirestore.collection("users").doc(`${this.state.idUser}`).collection("textos").doc(`${this.state.idText}`)
             .update({
             txtDocument: this.state.txt,
         });
-    }
+    }*/
 
     componentDidUpdate(prevProps, prevState, snapshot){
-        if(this.state.txt!==prevState.txt){
+        /*if(this.state.txt!==prevState.txt){
                 this.updateText()
-        }
+        }*/
     }
 
     componentDidMount(){
@@ -71,8 +71,9 @@ export class EditTextShare extends React.Component{
     }
 
     handleChange = value => {
-        this.setState({ 
-            txt: value
+        myFirestore.collection("users").doc(`${this.state.idUser}`).collection("textos").doc(`${this.state.idText}`)
+            .update({
+            txtDocument: value
         });
     };
 
@@ -93,7 +94,6 @@ export class EditTextShare extends React.Component{
                             placeholder="Ingresar texto" 
                         />
                         <Link to="/user/shared-with" id="x" class="btn btn-primary" onClick={()=> this.alert()}>Save</Link>
-                        <button >Save</button>
                     </form>
                 </div>
                 <div class="col-lg-2"></div>

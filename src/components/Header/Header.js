@@ -1,5 +1,4 @@
 import React from 'react';
-import { Txt } from '../texts/text';
 import { Link } from "react-router-dom";
 
 export class Header extends React.Component{
@@ -7,6 +6,7 @@ export class Header extends React.Component{
         app: this.props.appName,
         id: localStorage.getItem('id'),
         email: localStorage.getItem('emailUser'),
+        cont: ''
     }
 
     clearStorage=()=>{
@@ -28,11 +28,7 @@ export class Header extends React.Component{
                                 <Link to="/user/my-Drive" class="btn btn-primary" onClick={this.clearStorage}>My Drive</Link>
                             </li>
                             <li>
-                                <Link to="/user/shared-with" class="btn btn-primary" onClick={this.clearStorage}>Shared With Me</Link>
-                            </li>
-                            <li>
                                 <Link to="/user/profile" class="btn btn-primary">{this.props.user.displayName}</Link>
-                                
                             </li>
                             <li>
                                 <Link to="/" onClick={this.props.onLogout} class="btn btn-primary">Logout</Link>

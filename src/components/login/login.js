@@ -15,19 +15,13 @@ export class Session extends React.Component{
         this.login=this.login.bind(this)
     }
 
-
-    /*componentDidUpdate(prevProps, prevState, snapshot){
-        if(this.state.user!==prevState.user){
-            window.location.reload()
-        }
-    }*/
-
     componentDidMount(){
         firebase.auth().onAuthStateChanged(user =>{
+            console.log("XXXXXXXXXXXXXXXXXX")
             if(this.state.user){
                 this.setState({ user: user })
             }else{
-                this.setState({ user: null })
+                this.setState({ user: user })
             }
         })
     }
@@ -36,9 +30,6 @@ export class Session extends React.Component{
         let provider = new firebase.auth.OAuthProvider('microsoft.com');
         firebase.auth().signInWithPopup(provider) // devuelve promesa
         .then(result => this.writeData(result.user.uid, result.user.displayName, result.user.email, result.user.photoURL))        
-        .then(this.state.user?
-            setTimeout(()=>{window.location.reload() }, 14000):setTimeout(()=>{window.location.reload() }, 6500)
-            )
         .catch(error => console.log(`Error ${error.code}: ${error.message}`));
     }
 
@@ -74,7 +65,7 @@ export class Session extends React.Component{
                             Demo-CrS
                         </li>
                         <li>
-                            <Link to="/user" onClick={this.login} class="btn btn-primary">Login</Link>
+                            <Link to="/" onClick={this.login} class="btn btn-primary">Login</Link>
                         </li>
                         </ul>
                     </div>

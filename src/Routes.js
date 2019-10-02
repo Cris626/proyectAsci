@@ -9,13 +9,13 @@ import { OpenTextShare } from './components/openTxt/openTxtShare';
 import { EditText } from './components/texts/editText';
 import { EditTextShare } from './components/openTxt/editTextShare';
 import { Profile } from './components/profile/showProfile';
+//import { Header } from './components/HeaderHeader'
 
 const Routes = () =>{
     return (
         <Switch>
             <div class="container-fluid">
-                <Route exact path='/' component={ Session }/>
-                <Route path='/user' component={ Session } />
+                <Route path='/' component={ Session }/>
                 <Route path='/user/profile' component={ Profile } />
                 <Route path='/user/my-drive' component={ Txt } />
                 <Route path='/user/text' component={ OpenText } />

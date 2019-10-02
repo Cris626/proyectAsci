@@ -17,7 +17,7 @@ export class EditText extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.getTexto = this.getTexto.bind(this);
         this.handleFileUpload = this.handleFileUpload.bind(this);
-        this.updateText = this.updateText.bind(this);
+        //this.updateText = this.updateText.bind(this);
     }
     
     
@@ -32,17 +32,19 @@ export class EditText extends React.Component{
           .catch(err => console.log(err.message))
     }
 
-    updateText=()=>{
+    /*updateText=()=>{
         myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc(`${this.state.idText}`)
             .update({                                
                 txtDocument: this.state.txt
             })
-    }    
+    }*/    
 
     componentDidUpdate(prevProps, prevState, snapshot){       /////////
-        if(this.state.txt!==prevState.txt){
+        //console.log("XXXXXXXXXXXX")
+        /*if(this.state.txt!==prevState.txt){
             this.updateText()
-        }
+        }*/
+        //this.updateText()
     }
 
     componentDidMount(){
@@ -70,10 +72,14 @@ export class EditText extends React.Component{
         this.handleFileUpload();
     }
 
-    handleChange = value => {
-        this.setState({ 
-            txt: value
-        });
+    handleChange = event => {
+        myFirestore.collection("users").doc(`${this.state.id}`).collection("textos").doc(`${this.state.idText}`)
+            .update({                                
+                txtDocument: event
+            })
+        /*this.setState({ 
+            txt: event
+        });*/
     };
 
 
