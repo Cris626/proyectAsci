@@ -24,7 +24,7 @@ export class Session extends React.Component{
                 this.setState({ user: user })
             }
         })
-    }
+    } 
     
     login(){
         let provider = new firebase.auth.OAuthProvider('microsoft.com');

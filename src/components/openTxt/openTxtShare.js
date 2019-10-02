@@ -1,6 +1,8 @@
 import React from 'react';
 import { myFirestore } from '../config/firebase';
 import { Link } from "react-router-dom";
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 
 export class OpenTextShare extends React.Component{
     constructor(){
@@ -44,6 +46,10 @@ export class OpenTextShare extends React.Component{
         })
     }
 
+    getIntance = instance => {  //  Iniciar Vista
+        instance.togglePreview();
+      };
+
 
     render(){
         return(
@@ -51,9 +57,14 @@ export class OpenTextShare extends React.Component{
                 <div class="col-lg-2"></div>
                 <div class="col-lg-8">
                 <h2>{this.state.title}</h2><hr align="left" noshade="noshade" size="2" width="100%"/>
-                    <div class="margin">
-                        <p class="text-justify">{this.state.texto}</p>
-                    </div>
+                    {<SimpleMDE
+                        value={this.state.texto}
+                        getMdeInstance= { this.getIntance }
+                        options={{
+                            toolbar: false,
+                            enabled: false,
+                        }}
+                    />}
                     <Link to="/user/edit-text-share" id="x"class="btn btn-primary">Edit</Link>
                 </div>
                 <div class="col-lg-2"></div>

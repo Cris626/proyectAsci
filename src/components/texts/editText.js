@@ -82,9 +82,8 @@ export class EditText extends React.Component{
         });*/
     };
 
-
     alert=()=>{alert("Se guardo con exito")}
-
+    
     render(){
         return(
             <div class="row">
